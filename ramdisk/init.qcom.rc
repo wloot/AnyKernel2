@@ -1,0 +1,6 @@
+import /init.spectrum.rc
+
+on property:sys.boot_completed=1
+    # Run helper script
+    exec u:r:init:s0 -- /init.lo.sh
+    exec u:r:magisk:s0 root root -- /init.lo.sh
