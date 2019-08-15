@@ -26,5 +26,5 @@ function write() {
 
     # wait 1 min before limiting cpu freq
     sleep 60
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2112000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2361600
 }&
