@@ -10,6 +10,8 @@ function write() {
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2361600
 }&
 
+write /dev/cpuset/foreground/boost/cpus 0-3,6-7
+
 # Set the default IRQ affinity to the silver cluster
 write /proc/irq/default_smp_affinity f
 
