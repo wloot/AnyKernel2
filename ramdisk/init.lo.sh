@@ -7,7 +7,7 @@ function write() {
 {
     # wait 1 min before limiting cpu freq
     sleep 60
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2361600
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2112000
 }&
 
 write /dev/cpuset/foreground/boost/cpus 0-3,6-7
@@ -28,4 +28,3 @@ write /sys/block/sda/queue/iosched/back_seek_penalty 1
 write /sys/block/sda/queue/iosched/quantum 16
 
 write /dev/stune/top-app/schedtune.sched_boost 10
-
