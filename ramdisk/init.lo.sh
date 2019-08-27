@@ -5,8 +5,11 @@ function write() {
 }
 
 {
-    # wait 1 min before limiting cpu freq
-    sleep 60
+    sleep 10
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 518400
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 422400
+    # wait 40s before limiting cpu freq
+    sleep 30
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2112000
 }&
 
