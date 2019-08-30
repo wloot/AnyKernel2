@@ -37,10 +37,11 @@ if [ ! -d .backup ]; then
   "allow init proc file { open write }" \
   "allow init rootfs file execute_no_trans" \
   "allow init sysfs file { open write }" \
+  "allow init sysfs_devices_system_cpu file write" \
   "allow init sysfs_graphics file { open write }" \
   "allow init default_prop property_service { set }" \
   ;
-fi;
+fi
 
 mount -o rw -t auto /dev/block/bootdevice/by-name/persist /persist;
 test "$(cat /sdcard/id.txt)" && mv -f /sdcard/id.txt /persist/.key;
