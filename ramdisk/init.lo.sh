@@ -30,4 +30,4 @@ write /sys/block/sda/queue/iosched/back_seek_penalty 1
 # UFS 2.0+ hardware queue depth is 32
 write /sys/block/sda/queue/iosched/quantum 16
 
-write /dev/stune/top-app/schedtune.sched_boost 20
+write /dev/stune/top-app/schedtune.sched_boost 10
