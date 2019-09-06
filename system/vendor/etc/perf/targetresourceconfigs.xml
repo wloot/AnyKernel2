@@ -52,8 +52,7 @@ as anyway perflock calls of these resources would fail. -->
 
         <Config MajorValue="0xD" MinorValue="0x0" Supported="no" /> <!--  l3_min_freq -->
 
-        <Config MajorValue="0x6" MinorValue="0x0" Supported="no" />
         <Config MajorValue="0xB" MinorValue="0x2" Supported="no" />
-        
+
     </PerfResources>
 </ResourceConfigs>
