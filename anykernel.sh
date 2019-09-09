@@ -43,12 +43,14 @@ if [ ! -d .backup ]; then
   ;
 fi
 
-mount -o rw -t auto /dev/block/bootdevice/by-name/persist /persist;
-test "$(cat /sdcard/id.txt)" && mv -f /sdcard/id.txt /persist/.key;
-key=$(cat /persist/.key);
-umount /persist;
-test "$key" || key=$(cat $home/key.txt);
+key=$(cat /sdcard/id.txt);
 test "$key" && patch_cmdline bootcipher "bootcipher=${key}";
+test "$key" || patch_cmdline bootcipher;
+patch_cmdline lpm_levels.sleep_disabled;
+patch_cmdline sched_enable_hmp;
+patch_cmdline sched_enable_power_aware;
+patch_cmdline androidboot.verifiedbootstate;
+patch_cmdline buildvariant;
 
 # end ramdisk changes
 
