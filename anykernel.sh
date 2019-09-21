@@ -62,6 +62,8 @@ if [ -z $(cat /system/vendor/etc/fstab.qcom | grep 'fileencryption=ice') ]; then
 else
   rm -f $home/system/vendor/etc/fstab.qcom.noice;
 fi
+
+chattr -R -a /system/vendor/etc/perf/;
 cp -rf $home/system/* /system/;
 rm -f /system/vendor/etc/perf/perf-profile1.conf;
 rm -f /system/vendor/etc/perf/perf-profile2.conf;
@@ -70,6 +72,7 @@ rm -f /system/vendor/etc/perf/perf-profile4.conf;
 rm -f /system/vendor/etc/perf/perf-profile5.conf;
 rm -f /system/vendor/etc/perf/perf-profile6.conf;
 chmod -R 644 /system/vendor/etc/perf/*;
+chattr -R +a /system/vendor/etc/perf/;
 chmod 644 /system/vendor/etc/powerhint.xml;
 chmod 644 /system/vendor/etc/fstab.qcom;
 mount -o ro,remount -t auto /system;
