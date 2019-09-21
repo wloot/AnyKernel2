@@ -73,7 +73,6 @@ rm -f /system/vendor/etc/perf/perf-profile5.conf;
 rm -f /system/vendor/etc/perf/perf-profile6.conf;
 chmod -R 644 /system/vendor/etc/perf/*;
 chattr -R +a /system/vendor/etc/perf/;
-chmod 644 /system/vendor/etc/powerhint.xml;
 chmod 644 /system/vendor/etc/fstab.qcom;
 mount -o ro,remount -t auto /system;
 
