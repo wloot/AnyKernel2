@@ -49,8 +49,6 @@ test "$key" || patch_cmdline bootcipher;
 patch_cmdline lpm_levels.sleep_disabled;
 patch_cmdline sched_enable_hmp;
 patch_cmdline sched_enable_power_aware;
-patch_cmdline androidboot.verifiedbootstate;
-patch_cmdline buildvariant;
 
 # end ramdisk changes
 
