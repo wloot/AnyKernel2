@@ -10,7 +10,7 @@ function write() {
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 422400
     # wait 40s before limiting cpu freq
     sleep 30
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2112000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2265600
 }&
 
 write /dev/cpuset/foreground/boost/cpus 0-3,6-7
