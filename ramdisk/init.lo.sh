@@ -24,10 +24,4 @@ write /sys/devices/virtual/graphics/fb0/idle_time 100
 # Disable thermal hotplug for thermal
 write /sys/module/msm_thermal/core_control/enabled 0
 
-# Flash doesn't have back seek problem, so penalty is as low as possible
-write /sys/block/sda/queue/iosched/back_seek_penalty 1
-
-# UFS 2.0+ hardware queue depth is 32
-write /sys/block/sda/queue/iosched/quantum 16
-
 write /dev/stune/top-app/schedtune.sched_boost 10
