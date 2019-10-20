@@ -8,7 +8,7 @@
 # Non-A/B fstab.qcom variant
 #<src>                                   <mnt_point>        <type> <mnt_flags and options>                          <fs_mgr_flags>
 /dev/block/bootdevice/by-name/userdata   /data              ext4   noatime,nosuid,nodev,barrier=1,noauto_da_alloc   wait,check,reservedsize=128M,fileencryption=ice,quota
-/dev/block/bootdevice/by-name/userdata    /data             f2fs   nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier   wait,quota
+/dev/block/bootdevice/by-name/userdata    /data             f2fs   noatime,nosuid,nodev,discard,fsync_mode=nobarrier   wait,check,reservedsize=128M,quota,checkpoint=fs
 /dev/block/bootdevice/by-name/misc       /misc              emmc   defaults                                         defaults
 /devices/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb1*  /storage/usbotg    vfat    nosuid,nodev                wait,voldmanaged=usbotg:auto
 /dev/block/bootdevice/by-name/modem      /vendor/firmware_mnt      vfat   ro,shortname=lower,uid=0,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait

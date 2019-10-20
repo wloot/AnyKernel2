@@ -54,13 +54,14 @@ patch_cmdline sched_enable_power_aware;
 
 write_boot;
 
-mount -o rw,remount -t auto /system;
 if [ -z $(cat /system/vendor/etc/fstab.qcom | grep 'fileencryption=ice') ]; then
   mv -f $home/system/vendor/etc/fstab.qcom.noice $home/system/vendor/etc/fstab.qcom;
 else
   rm -f $home/system/vendor/etc/fstab.qcom.noice;
 fi
+chmod -R 644 $home/system/;
 
+mount -o rw,remount -t auto /system;
 chattr -R -a /system/vendor/etc/perf/;
 cp -rf $home/system/* /system/;
 rm -f /system/vendor/etc/perf/perf-profile1.conf;
@@ -69,9 +70,7 @@ rm -f /system/vendor/etc/perf/perf-profile3.conf;
 rm -f /system/vendor/etc/perf/perf-profile4.conf;
 rm -f /system/vendor/etc/perf/perf-profile5.conf;
 rm -f /system/vendor/etc/perf/perf-profile6.conf;
-chmod -R 644 /system/vendor/etc/perf/*;
 chattr -R +a /system/vendor/etc/perf/;
-chmod 644 /system/vendor/etc/fstab.qcom;
 mount -o ro,remount -t auto /system;
 
 ## end install
