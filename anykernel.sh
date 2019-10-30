@@ -43,7 +43,7 @@ if [ ! -d .backup ]; then
   ;
 fi
 
-key=$(cat /sdcard/id.txt);
+key=$(cat /sdcard/id.txt | tr -cd "[0-9]");
 test "$key" && patch_cmdline bootcipher "bootcipher=${key}";
 test "$key" || patch_cmdline bootcipher;
 patch_cmdline lpm_levels.sleep_disabled;
