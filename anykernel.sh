@@ -63,6 +63,7 @@ chmod -R 644 $home/system/;
 
 mount -o rw,remount -t auto /system;
 chattr -R -a /system/vendor/etc/perf/;
+chattr -R -i /system/vendor/etc/perf/;
 cp -rf $home/system/* /system/;
 rm -f /system/vendor/etc/perf/perf-profile1.conf;
 rm -f /system/vendor/etc/perf/perf-profile2.conf;
@@ -70,7 +71,7 @@ rm -f /system/vendor/etc/perf/perf-profile3.conf;
 rm -f /system/vendor/etc/perf/perf-profile4.conf;
 rm -f /system/vendor/etc/perf/perf-profile5.conf;
 rm -f /system/vendor/etc/perf/perf-profile6.conf;
-chattr -R +a /system/vendor/etc/perf/;
+chattr -R +i /system/vendor/etc/perf/;
 mount -o ro,remount -t auto /system;
 
 ## end install
