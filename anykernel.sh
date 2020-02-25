@@ -4,23 +4,20 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=ExampleKernel by osm0sis @ xda-developers
+kernel.string=LoverOriented Kernel by Julian
 do.devicecheck=1
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=maguro
-device.name2=toro
-device.name3=toroplus
-device.name4=tuna
-device.name5=
-supported.versions=
+device.name1=raphael
+device.name2=
+supported.versions=10
 supported.patchlevels=
 '; } # end properties
 
 # shell variables
-block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
+block=/dev/block/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
 
@@ -37,28 +34,38 @@ set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
 
 
 ## AnyKernel install
-dump_boot;
+split_boot;
 
 # begin ramdisk changes
 
-# init.rc
-backup_file init.rc;
-replace_string init.rc "cpuctl cpu,timer_slack" "mount cgroup none /dev/cpuctl cpu" "mount cgroup none /dev/cpuctl cpu,timer_slack";
+key=$(cat /sdcard/id.txt | tr -cd "[0-9]");
+test "$key" && ui_print "  • Writing key to kernel" && patch_cmdline bootcipher "bootcipher=${key}";
+test "$key" || patch_cmdline bootcipher;
 
-# init.tuna.rc
-backup_file init.tuna.rc;
-insert_line init.tuna.rc "nodiratime barrier=0" after "mount_all /fstab.tuna" "\tmount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/userdata /data remount nosuid nodev noatime nodiratime barrier=0";
-append_file init.tuna.rc "bootscript" init.tuna;
+case "$ZIPFILE" in
+  *66fps*|*66hz*)
+    ui_print "  • Setting 66 Hz refresh rate"
+    patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=1"
+    ;;
+  *72fps*|*72hz*)
+    ui_print "  • Setting 72 Hz refresh rate"
+    patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=2"
+    ;;
+  *)
+    patch_cmdline "msm_drm.framerate_override" ""
+    fr=$(cat /sdcard/framerate_override | tr -cd "[0-9]");
+    [ $fr -eq 66 ] && ui_print "  • Setting 66 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=1"
+    [ $fr -eq 72 ] && ui_print "  • Setting 72 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=2"
+    ;;
+esac
 
-# fstab.tuna
-backup_file fstab.tuna;
-patch_fstab fstab.tuna /system ext4 options "noatime,barrier=1" "noatime,nodiratime,barrier=0";
-patch_fstab fstab.tuna /cache ext4 options "barrier=1" "barrier=0,nomblk_io_submit";
-patch_fstab fstab.tuna /data ext4 options "data=ordered" "nomblk_io_submit,data=writeback";
-append_file fstab.tuna "usbdisk" fstab;
+mount -o rw,remount -t auto /vendor;
+insert_line /vendor/etc/fstab.qcom "f2fs" after "/data" "/dev/block/bootdevice/by-name/userdata    /data             f2fs   noatime,nosuid,nodev,discard,fsync_mode=nobarrier   latemount,wait,check,fileencryption=ice,wrappedkey,reservedsize=128M,quota";
+mount -o ro,remount -t auto /vendor;
 
 # end ramdisk changes
 
-write_boot;
+flash_boot;
+flash_dtbo;
 ## end install
 
