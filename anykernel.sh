@@ -11,7 +11,7 @@ do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=raphael
-device.name2=
+device.name2=raphaelin
 supported.versions=10
 supported.patchlevels=
 '; } # end properties
@@ -60,7 +60,7 @@ case "$ZIPFILE" in
 esac
 
 mount -o rw,remount -t auto /vendor;
-insert_line /vendor/etc/fstab.qcom "f2fs" after "/data" "/dev/block/bootdevice/by-name/userdata    /data             f2fs   noatime,nosuid,nodev,discard,fsync_mode=nobarrier   latemount,wait,check,fileencryption=ice,wrappedkey,reservedsize=128M,quota";
+insert_line /vendor/etc/fstab.qcom "f2fs" after "/data" "/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,fsync_mode=nobarrier    latemount,wait,check,quota,formattable,fileencryption=ice,wrappedkey,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs";
 mount -o ro,remount -t auto /vendor;
 
 # end ramdisk changes
