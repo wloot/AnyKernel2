@@ -47,20 +47,30 @@ case "$ZIPFILE" in
     ui_print "  • Setting 66 Hz refresh rate"
     patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=1"
     ;;
+  *69fps*|*69hz*)
+    ui_print "  • Setting 69 Hz refresh rate"
+    patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=2"
+    ;;
   *72fps*|*72hz*)
     ui_print "  • Setting 72 Hz refresh rate"
-    patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=2"
+    patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=3"
+    ;;
+  *75fps*|*75hz*)
+    ui_print "  • Setting 75 Hz refresh rate"
+    patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=4"
     ;;
   *)
     patch_cmdline "msm_drm.framerate_override" ""
     fr=$(cat /sdcard/framerate_override | tr -cd "[0-9]");
     [ $fr -eq 66 ] && ui_print "  • Setting 66 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=1"
-    [ $fr -eq 72 ] && ui_print "  • Setting 72 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=2"
+    [ $fr -eq 69 ] && ui_print "  • Setting 69 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=2"
+    [ $fr -eq 72 ] && ui_print "  • Setting 72 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=3"
+    [ $fr -eq 75 ] && ui_print "  • Setting 75 Hz refresh rate" && patch_cmdline "msm_drm.framerate_override" "msm_drm.framerate_override=4"
     ;;
 esac
 
 mount -o rw,remount -t auto /vendor;
-insert_line /vendor/etc/fstab.qcom "f2fs" after "/data" "/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,fsync_mode=nobarrier    latemount,wait,check,quota,formattable,fileencryption=ice,wrappedkey,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs";
+insert_line /vendor/etc/fstab.qcom "f2fs" after "/data" "/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,fsync_mode=nobarrier    latemount,wait,fileencryption=ice,wrappedkey,check,quota,formattable,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs";
 mount -o ro,remount -t auto /vendor;
 
 # end ramdisk changes

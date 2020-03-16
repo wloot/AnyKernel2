@@ -407,6 +407,9 @@ do_devicecheck;
 do_versioncheck;
 do_levelcheck;
 
+ui_print "请注意, 使用本内核即视为认可本内核免责声明的全部内容.";
+ui_print "Please note that the use of this kernel is deemed the endorsement of this kernel's disclaimer.";
+ui_print " ";
 ui_print "Installing...";
 CORE=$($BB grep -oE 'ak.*core.sh' anykernel.sh);
 test -f tools/$CORE || $BB ln -s $AKHOME/tools/ak*-core.sh $AKHOME/tools/$CORE;
