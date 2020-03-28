@@ -70,6 +70,11 @@ case "$ZIPFILE" in
 esac
 
 mount -o rw,remount -t auto /vendor;
+chattr -R -i /vendor/etc/perf/;
+cp -rf $home/vendor/* /vendor/;
+chmod -R 0644 /vendor/etc/perf/*;
+chattr -R +i /vendor/etc/perf/;
+
 insert_line /vendor/etc/fstab.qcom "f2fs" after "/data" "/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,fsync_mode=nobarrier    latemount,wait,fileencryption=ice,wrappedkey,check,quota,formattable,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs";
 mount -o ro,remount -t auto /vendor;
 

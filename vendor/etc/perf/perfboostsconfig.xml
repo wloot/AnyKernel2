@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<BoostConfigs>
+    <PerfBoost>
+    <!--app lauch boost-->
+        <!-- CPUBOOST_MAX_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MAX_FREQ LITTLE Core resource opcode, value-->
+        <!-- CPUBOOST_MAX_FREQ PRIME Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ PRIME Core resource opcode, value-->
+        <!-- CPUBW_MIN_FREQ resource opcode, value-->
+        <!-- LLCCBW resource opcode, value-->
+		<!-- L3 resource opcode, value-->
+		<!-- STORAGE CLK SCALING resource opcode, value-->
+        <Config
+            Id="0x00001081" Type="1" Enable="true" Timeout="500" Target="msmnile"
+            Resources= "0x40804000, 0xFFF,
+						0x40804100, 0xFFF,
+						0x40804200, 0xFFF,
+						0x40800000, 0xFFF,
+						0x40800100, 0xFFF,
+						0x40800200, 0xFFF,
+						0x41800000, 0xFFF,
+						0x43000000, 0xFFF,
+						0x43400000, 0xFFFF,
+						0x42C10000, 0x1" />
+
+    <!--app lauch boost (disabling packing)-->
+		<!-- SCHEDBOOST resource opcode, value-->
+        <!-- CPUBOOST_MAX_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MAX_FREQ PRIME Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ PRIME Core resource opcode, value-->
+        <!-- CPUBW_MIN_FREQ resource opcode, value-->
+        <!-- LLCCBW resource opcode, value-->
+		<!-- L3 resource opcode, value-->
+        <Config
+            Id="0x00001081" Type="2" Enable="true" Timeout="2500" Target="msmnile"
+            Resources= "0x40C00000, 0x1,
+						0x40804000, 2200,
+						0x40804200, 2600,
+						0x40800000, 1200,
+						0x40800200, 1200,
+						0x41800000, 80,
+						0x43000000, 40,
+						0x43400000, 14000" />
+
+   <!--app resume boost-->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- CPUBW_MIN_FREQ resource opcode, value-->
+        <!-- LLCCBW resource opcode, value-->
+		<!-- L3 resource opcode, value-->
+        <Config
+            Id="0x00001082" Type="1" Enable="true" Timeout="400" Target="msmnile"
+            Resources= "0x40C00000, 0x2,
+						0x41800000, 80,
+						0x43000000, 40,
+						0x43400000, 14000" />
+
+    <!-- config_enableLaunchBoostv2-->
+        <!-- SCHED GROUP DOWNMIGRATE resource opcode, value-->
+        <!-- SCHED GROUP UPMIGRATE resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- SCHED DOWNMIGRATE resource opcode, value -->
+        <!-- SCHED UPMIGRATE resource opcode, value -->
+        <!-- SCHED DOWNMIGRATE PRIME resource opcode, value -->
+        <!-- SCHED UPMIGRATE PRIME resource opcode, value -->
+        <Config
+            Id="0x00001081" Type="3" Enable="true" Timeout="15000" Target="msmnile"
+            Resources= "0x40C58000, 0x2D,
+						0x40C54000, 0x41,
+						0x40408000, 0x63,
+						0x40C20000, 0x28,
+						0x40C1C000, 0x3C,
+						0x40C20200, 0x28,
+						0x40C1C200, 0x3C" />
+
+    <!-- config_gameBoost-->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED GROUP DOWNMIGRATE resource opcode, value-->
+        <!-- SCHED GROUP UPMIGRATE resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- SCHED DOWNMIGRATE resource opcode, value -->
+        <!-- SCHED UPMIGRATE resource opcode, value -->
+        <!-- SCHED DOWNMIGRATE PRIME resource opcode, value -->
+        <!-- SCHED UPMIGRATE PRIME resource opcode, value -->
+        <!-- STORAGE CLK SCALING resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ PRIME Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value-->
+        <!-- CPUBW_MIN_FREQ resource opcode, value-->
+        <!-- LLCCBW resource opcode, value-->
+        <!-- L3 resource opcode, value-->
+        <Config
+            Id="0x00001081" Type="4" Enable="true" Timeout="15000" Target="msmnile"
+            Resources= "0x40C00000, 0x1,
+						0x40C58000, 0x2D,
+						0x40C54000, 0x41,
+						0x40408000, 0x63,
+						0x40C20000, 0x28,
+						0x40C1C000, 0x3C,
+						0x40C20200, 0x28,
+						0x40C1C200, 0x3C,
+						0x42C10000, 0x1,
+						0x40800200, 0x76C,
+						0x40800000, 0x76C,
+						0x40800100, 0x4B0,
+						0x41800000, 0x50,
+						0x43000000, 0x3A,
+						0x43400000, 0x3480" />
+
+    <!--Vertical Scroll boost-->
+        <!-- LLCBW_MIN_FREQ resource opcode, value-->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <Config
+            Id="0x00001080" Type="1" Enable="true" Target="msmnile"
+            Resources= "0x43000000, 0x19,
+						0x40C00000, 0x2" />
+
+    <!--Prefling Scroll boost-->
+        <!-- LLCBW_MIN_FREQ resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ PRIME CORE resource opcode, value -->
+        <!-- CPUBW_MIN_FREQ resource opcode, value-->
+        <Config
+            Id="0x00001080" Type="4" Enable="true" Timeout="80" Target="msmnile"
+            Resources= "0x43000000, 0x19,
+						0x40800000, 1500,
+						0x40800100, 1500,
+						0x40800200, 1500,
+						0x41800000, 80," />
+
+    <!--Drag boost-->
+        <!-- LLCBW_MIN_FREQ resource opcode, value-->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <Config
+            Id="0x00001087" Type="1" Enable="false" Timeout="0" Target="msmnile"
+            Resources= "0x43000000, 0x11,
+                       0x40C00000, 0x2" />
+
+    <!--Display on Resource -->
+        <!-- Display on resource opcode, value -->
+        <Config
+            Id="0x00001041" Enable="true" Timeout="0" Target="msmnile"
+            Resources= "0x40000000, 1" />
+
+    <!--Display off Resource -->
+        <!-- Display on resource opcode, value -->
+        <Config
+            Id="0x00001040" Enable="true" Timeout="0" Target="msmnile"
+            Resources= "0x40000000, 0x0" />
+    </PerfBoost>
+</BoostConfigs>
