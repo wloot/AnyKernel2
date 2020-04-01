@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <!--
  * Copyright (c) 2017-2018 Qualcomm Technologies, Inc.
@@ -42,18 +42,11 @@
 
     <Config1>
 
-         <TargetInfo
-             Target="msmnile"
-             NumClusters="3"
-             TotalNumCores="8"
-             SocIds="339,361"
-             SynCore="1"
-             MinCoreOnline="0"
-             CpufreqGov="1" />
+        <TargetInfo Target="msmnile" NumClusters="3" TotalNumCores="8" SocIds="339,361" SynCore="1" MinCoreOnline="0" CpufreqGov="1" />
 
-         <ClustersInfo Id="0" NumCores="4" Type="little" />
-         <ClustersInfo Id="1" NumCores="3" Type="big" />
-         <ClustersInfo Id="2" NumCores="1" Type="prime" />
+        <ClustersInfo Id="0" NumCores="4" Type="little" />
+        <ClustersInfo Id="1" NumCores="3" Type="big" />
+        <ClustersInfo Id="2" NumCores="1" Type="prime" />
 
     </Config1>
 
