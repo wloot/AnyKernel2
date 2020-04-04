@@ -13,7 +13,7 @@
         <!-- LLCCBW resource opcode, value-->
         <!-- L3 resource opcode, value-->
         <!-- STORAGE CLK SCALING resource opcode, value-->
-        <Config Id="0x00001081" Type="1" Enable="true" Timeout="500" Target="msmnile" Resources="0x40804000, 0xFFF,
+        <Config Id="0x00001081" Type="1" Enable="true" Timeout="700" Target="msmnile" Resources="0x40804000, 0xFFF,
 						0x40804100, 0xFFF,
 						0x40804200, 0xFFF,
 						0x40800000, 0xFFF,
