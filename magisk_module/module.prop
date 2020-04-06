@@ -1,0 +1,7 @@
+id=candy_kernel
+name=Candy
+version=v1.0
+versionCode=0406
+author=Candy Panic
+description=Magisk Module for Candy Kernel
+support=https://github.com/wloot
