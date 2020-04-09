@@ -2,8 +2,7 @@
 MODDIR=${0%/*}
 
 # By yc9559
-mod_perfconfigstore()
-{
+mod_perfconfigstore() {
     perfconfigstore="/system/vendor/etc/perf/perfconfigstore.xml"
     if [ -f "$perfconfigstore" ]; then
         found="$(cat "$perfconfigstore" | grep "ro.vendor.qti.sys.fw.bg_apps_limit")"

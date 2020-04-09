@@ -3,21 +3,19 @@
 <BoostConfigs>
     <PerfBoost>
         <!--app lauch boost-->
+        <!-- SCHEDBOOST resource opcode, value-->
         <!-- CPUBOOST_MAX_FREQ BIG Core resource opcode, value-->
-        <!-- CPUBOOST_MAX_FREQ LITTLE Core resource opcode, value-->
         <!-- CPUBOOST_MAX_FREQ PRIME Core resource opcode, value-->
         <!-- CPUBOOST_MIN_FREQ BIG Core resource opcode, value-->
-        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value-->
         <!-- CPUBOOST_MIN_FREQ PRIME Core resource opcode, value-->
         <!-- CPUBW_MIN_FREQ resource opcode, value-->
         <!-- LLCCBW resource opcode, value-->
         <!-- L3 resource opcode, value-->
         <!-- STORAGE CLK SCALING resource opcode, value-->
-        <Config Id="0x00001081" Type="1" Enable="true" Timeout="700" Target="msmnile" Resources="0x40804000, 0xFFF,
-						0x40804100, 0xFFF,
+        <Config Id="0x00001081" Type="1" Enable="true" Timeout="700" Target="msmnile" Resources="0x40C00000, 0x1,
+						0x40804000, 0xFFF,
 						0x40804200, 0xFFF,
 						0x40800000, 0xFFF,
-						0x40800100, 0xFFF,
 						0x40800200, 0xFFF,
 						0x41800000, 0xFFF,
 						0x43000000, 0xFFF,
@@ -34,7 +32,7 @@
         <!-- LLCCBW resource opcode, value-->
         <!-- L3 resource opcode, value-->
         <Config Id="0x00001081" Type="2" Enable="true" Timeout="2500" Target="msmnile" Resources="0x40C00000, 0x1,
-						0x40804000, 2200,
+						0x40804000, 2300,
 						0x40804200, 2600,
 						0x40800000, 1200,
 						0x40800200, 1200,
@@ -104,22 +102,24 @@
         <Config Id="0x00001081" Type="6" Enable="false" Timeout="2000" Target="msmnile" Resources="" />
 
         <!--Vertical Scroll boost-->
-        <!-- LLCBW_MIN_FREQ resource opcode, value-->
         <!-- SCHEDBOOST resource opcode, value-->
-        <Config Id="0x00001080" Type="1" Enable="true" Target="msmnile" Resources="0x43000000, 0x19,
-						0x40C00000, 0x2" />
+        <!-- LLCBW_MIN_FREQ resource opcode, value-->
+        <Config Id="0x00001080" Type="1" Enable="true" Target="msmnile" Resources="0x40C00000, 0x2,
+						0x43000000, 0x19" />
 
         <!--Prefling Scroll boost-->
+        <!-- SCHEDBOOST resource opcode, value-->
         <!-- LLCBW_MIN_FREQ resource opcode, value-->
         <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
         <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
         <!-- CPUBOOST_MIN_FREQ PRIME CORE resource opcode, value -->
         <!-- CPUBW_MIN_FREQ resource opcode, value-->
-        <Config Id="0x00001080" Type="4" Enable="true" Timeout="80" Target="msmnile" Resources="0x43000000, 0x19,
+        <Config Id="0x00001080" Type="4" Enable="true" Timeout="80" Target="msmnile" Resources="0x40C00000, 0x2,
+						0x43000000, 0x19,
 						0x40800000, 1500,
 						0x40800100, 1500,
 						0x40800200, 1500,
-						0x41800000, 80," />
+						0x41800000, 80" />
 
         <!--MTP boost-->
         <Config Id="0x00001086" Enable="false" Target="msmnile" Resources="" />
