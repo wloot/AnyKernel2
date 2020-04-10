@@ -1,6 +1,11 @@
 #!/system/bin/sh
 MODDIR=${0%/*}
 
+echo 16 > /sys/block/sda/queue/iosched/quantum
+echo 1 > /sys/block/sda/queue/iosched/back_seek_penalty
+echo 4096 > /sys/block/sda/queue/iosched/back_seek_max
+return 0
+
 set_top_app_task() {
 	local dump
 	local flag
@@ -102,7 +107,6 @@ set_task android.fg foreground tasks stune
 set_task android.ui top-app tasks stune
 set_task android.display top-app tasks stune
 set_task PackageManager background tasks stune
-set_task RenderThread background tasks stune
 
 set_process system_server foreground cgroup.procs cpuset
 set_task CompactionThrea system-background tasks cpuset
@@ -113,3 +117,20 @@ set_task android.bg system-background tasks cpuset
 set_task android.fg foreground tasks cpuset
 set_task android.ui foreground tasks cpuset
 set_task android.display top-app tasks cpuset
+
+while true; do
+	local temp=0
+	local dump
+
+	dump="$(ps -Ao pid,args)"
+	for pid in $(echo "$dump" | grep "system_server" | awk '{print $1}'); do
+		for tid in $(ls /proc/$pid/task/); do
+			if test "$(cat /proc/$tid/comm | grep -x RenderThread)"; then
+				echo $tid >/dev/stune/background/tasks
+				temp=1
+			fi
+		done
+	done
+	[ "$temp" -eq "1" ] && break
+	sleep 10s
+done

@@ -1,7 +1,7 @@
 id=candy_kernel
 name=Candy Plugin
-version=v1.0
-versionCode=0409
+version=v1.1
+versionCode=0414
 author=Candy Panic
 description=糖果仁内核的配套Magisk模块, 仅适配糖果仁内核. 包含Perfd配置,温控和UX cgroup等系统层优化, 建议您在糖果仁内核上启用本模块以获得更优的体验.
 support=https://github.com/wloot
