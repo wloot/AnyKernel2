@@ -23,9 +23,10 @@ as anyway perflock calls of these resources would fail. -->
 
 <ResourceConfigs>
     <PerfResources>
-        <!-- WALT -->
         <Config MajorValue="0x3" MinorValue="0x7" Supported="no" /> <!-- sched_upmigrate -->
         <Config MajorValue="0x3" MinorValue="0x8" Supported="no" /> <!-- sched_downmigrate -->
+
+        <!-- WALT -->
         <Config MajorValue="0x3" MinorValue="0x15" Supported="no" /> <!-- sched_group_upmigrate -->
         <Config MajorValue="0x3" MinorValue="0x16" Supported="no" /> <!-- sched_group_downmigrate -->
         <Config MajorValue="0x3" MinorValue="0x1B" Supported="no" /> <!-- sched_little_cluster_coloc_fmin_khz -->

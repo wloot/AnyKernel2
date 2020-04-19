@@ -4,7 +4,6 @@ MODDIR=${0%/*}
 echo 16 > /sys/block/sda/queue/iosched/quantum
 echo 1 > /sys/block/sda/queue/iosched/back_seek_penalty
 echo 4096 > /sys/block/sda/queue/iosched/back_seek_max
-return 0
 
 set_top_app_task() {
 	local dump
@@ -49,6 +48,8 @@ until [[ "$flag" -eq 4 ]]; do
 	let "flag+=$(set_top_app_task android.ui)"
 	let "flag+=$(set_top_app_task android.display)"
 done
+
+return 0
 
 set_process() {
 	local dump
