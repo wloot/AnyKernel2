@@ -11,9 +11,9 @@ set_top_app_task() {
 
 	flag=0
 	dump="$(ps -Ao pid,args)"
-	for pid in $(echo "$dump" | grep "$1" | awk '{print $1}'); do
+	for pid in $(echo "$dump" | grep "system_server" | awk '{print $1}'); do
 		for tid in $(ls /proc/$pid/task/); do
-			if test "$(cat /proc/$tid/comm | grep -x "$2")"; then
+			if test "$(cat /proc/$tid/comm | grep -x "$1")"; then
 				echo 1 >/proc/$tid/top_app_no_override
 				flag=1
 			fi
@@ -40,16 +40,16 @@ set_top_app_process() {
 }
 
 flag=0
-until [[ "$flag" -eq 6 ]]; do
+until [[ "$flag" -eq 4 ]]; do
 	sleep 5s
 	flag=0
-	let "flag+=$(set_top_app_task system_server android.anim.lf)"
-	let "flag+=$(set_top_app_task system_server android.anim)"
-	let "flag+=$(set_top_app_task system_server android.ui)"
-	let "flag+=$(set_top_app_task system_server android.display)"
-	let "flag+=$(set_top_app_task com.miui.home RenderThread)"
-	let "flag+=$(set_top_app_process com.miui.home)"
+	let "flag+=$(set_top_app_task android.anim)"
+	let "flag+=$(set_top_app_task android.anim.lf)"
+	let "flag+=$(set_top_app_task android.ui)"
+	let "flag+=$(set_top_app_task android.display)"
 done
+
+return 0
 
 set_process() {
 	local dump
@@ -97,10 +97,6 @@ restore_bg_stune() {
 	done
 }
 
-set_process surfaceflinger foreground cgroup.procs cpuset
-
-return 0
-
 store_bg_stune
 set_process system_server foreground cgroup.procs stune
 restore_bg_stune
@@ -122,20 +118,3 @@ set_task android.bg system-background tasks cpuset
 set_task android.fg foreground tasks cpuset
 set_task android.ui foreground tasks cpuset
 set_task android.display top-app tasks cpuset
-
-while true; do
-	local temp=0
-	local dump
-
-	dump="$(ps -Ao pid,args)"
-	for pid in $(echo "$dump" | grep "system_server" | awk '{print $1}'); do
-		for tid in $(ls /proc/$pid/task/); do
-			if test "$(cat /proc/$tid/comm | grep -x RenderThread)"; then
-				echo $tid >/dev/stune/background/tasks
-				temp=1
-			fi
-		done
-	done
-	[ "$temp" -eq "1" ] && break
-	sleep 10s
-done
